@@ -1,0 +1,98 @@
+.hero-slider {
+    height: 300px;
+    max-height: 1080px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 50px;
+    margin-top: $header-height;
+
+    @include tablet {
+        height: 100%;
+        // margin-top: $header-tablet-height;
+        margin-top: calc(#{$header-tablet-height} * -1);
+    }
+
+    @include mobile {
+        height: 100%;
+        // margin-top: $header-mobile-height;
+        margin-top: $header-mobile-height;
+        margin-bottom: 0;
+    }
+
+    &__item {
+        @include flex(center, space-between);
+
+        // opacity: 0;
+        // visibility: hidden;
+        display: none;
+        // pointer-events: none;
+        // position: absolute;
+        // inset: 0;
+        height: 100%;
+
+        @include tablet {
+            flex-direction: column-reverse;
+            padding-top: $header-tablet-height;
+        }
+
+        @include mobile {
+            padding-top: unset;
+            padding-bottom: 20px;
+        }
+
+        &.active {
+            // opacity: 1;
+            // visibility: visible;
+            display: block;
+            // pointer-events: visible;
+        }
+
+        &__image {
+            @include flex(center, center);
+            flex-grow: 1;
+            position: relative;
+            height: 100%;
+            z-index: 99;
+            pointer-events: none;
+
+            @include tablet {
+                width: 100%;
+                height: 60%;
+                @include flex(center, center);
+                flex-grow: unset;
+                z-index: 98;
+            }
+
+            img {
+                height: 100%;
+                position: absolute;
+                bottom: 0;
+                // right: 0;
+                transform: scale(0) rotate(65deg);
+                transition: transform 0.5s
+                    cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+                @include tablet {
+                    height: 100%;
+                    position: relative;
+                }
+            }
+        }
+
+        &.active &__image > img {
+            transform: scale(1) rotate(0);
+        }
+    }
+}
+
+@keyframes border {
+    0% {
+        border-radius: 58% 42% 38% 62% / 42% 55% 45% 58%;
+    }
+    50% {
+        border-radius: 31% 69% 59% 41% / 28% 24% 76% 72%;
+    }
+    100% {
+        border-radius: 58% 42% 38% 62% / 42% 55% 45% 58%;
+    }
+}

@@ -1,0 +1,2 @@
+// SLIDER
+export const GET_SLIDER_IMG = "GET_SLIDER_IMG";
